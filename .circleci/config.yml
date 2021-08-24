@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Print Name
           command: |
-            echo "<<CREATOR_NAME>>"
+            echo ${CREATOR_NAME}
       # Orchestrate or schedule a set of jobs
 workflows:
   # Name the workflow "welcome"
