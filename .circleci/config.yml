@@ -9,15 +9,24 @@ orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
 jobs:
-  print_out_workflow_id:
+  fail_build:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - print_pipeline_id
+      - run:
+          name: Fail Build
+          command: |
+            return 1
+      - run:
+          name: Print out Heelo Error
+          command: |
+            echo "Hellow Error!"
+          when: on_fail
+      # Orchestrate or schedule a set of jobs
 workflows:
   # Name the workflow "welcome"
   welcome:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
-      - print_out_workflow_id
+      - fail_build
