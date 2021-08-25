@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Print out Heelo Error
           command: |
-            echo "Hellow Error!"
+            echo "Hellow Error"
           when: on_fail
       # Orchestrate or schedule a set of jobs
 workflows:
