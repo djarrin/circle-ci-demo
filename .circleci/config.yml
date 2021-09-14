@@ -33,8 +33,9 @@ jobs:
       # Fail the job intentionally to simulate an error.
       # Uncomment the line below if you want to fail the current step
       - run: return 1
-      - destroy_environment
-        when: on_fail
+      - run:
+          command: destroy_environment
+          when: on_fail
   configure_infrastructure:
     docker:
       - image: python:3.7-alpine3.11
@@ -64,8 +65,9 @@ jobs:
             else
             return 1
             fi
-      - destroy_environment
-        when: on_fail
+      - run:
+          command: destroy_environment
+          when: on_fail
 workflows:
   # Name the workflow "welcome"
   my_workflow:
