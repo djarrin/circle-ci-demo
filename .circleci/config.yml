@@ -50,20 +50,6 @@ jobs:
           name: Configure server
           command: |
             ansible-playbook -i inventory.txt main4.yml
-  fail_build:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - run:
-          name: Fail Build
-          command: |
-            return 1
-      - run:
-          name: Print out Heelo Error
-          command: |
-            echo "Hellow Error"
-          when: on_fail
-      # Orchestrate or schedule a set of jobs
 workflows:
   # Name the workflow "welcome"
   my_workflow:
