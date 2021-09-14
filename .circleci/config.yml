@@ -50,9 +50,24 @@ jobs:
           name: Configure server
           command: |
             ansible-playbook -i inventory.txt main4.yml
+  smoke_test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run:
+          name: Smoke test node server
+          command: |
+            if curl -s --head "http://54.235.8.171"
+            then
+            return 0
+            else
+            return 1
+            fi
+
 workflows:
   # Name the workflow "welcome"
   my_workflow:
     # Run the welcome/run job in its own container
     jobs:
       - configure_infrastructure
+      - smoke_test
